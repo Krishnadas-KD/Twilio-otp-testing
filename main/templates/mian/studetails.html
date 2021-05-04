@@ -1,0 +1,16 @@
+{% extends "mian/navbar.html" %}
+{% block title %}View List{% endblock %}
+ 
+{% block content %}
+    
+    <form method="post" action="#">
+    {% csrf_token %}
+       <h1>{{d.Name}}</h1>
+       <br>
+       <h1>{{d.Reg_no}}</h1>
+       <br>
+       <h1>{{d.mobile_no}}</h1>
+        <button type="submit">Add Item</button>	
+
+    </form>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'mian/navbar.html' %}
+{% block content %}
+{% load static %}
+<body>
+    <div><h1>Cretae page</h1></div>
+    <form method = "POST" action="/create/">
+{% csrf_token %}
+{{form.as_p}}
+<button type="submit",name="save">Create</button>
+</form>
+</body>
+{% endblock content %}

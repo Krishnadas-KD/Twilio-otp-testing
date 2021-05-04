@@ -1,0 +1,19 @@
+<html>
+<head>
+<title>
+Hi
+</title>
+</head>
+{% load static %}
+<link rel="stylesheet" href="{% static 'index.css' %}">
+<body>
+
+<div class="navbar">
+<a href="http://www.ssmpoly.ac.in/">   
+<img src="{% static '/img/home.png' %}" class="new">
+</a> {% block content %} {% endblock %}
+</div>
+
+
+</body>
+</html>

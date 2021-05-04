@@ -1,0 +1,35 @@
+{% extends 'mian/navbar.html' %} {% block content %} {% load static %}
+<script>
+    function AllowOnlyNumbers(e) {
+        e = (e) ? e : window.event;
+        var clipboardData = e.clipboardData ? e.clipboardData : window.clipboardData;
+        var key = e.keyCode ? e.keyCode : e.which ? e.which : e.charCode;
+        var str = (e.type && e.type == "paste") ? clipboardData.getData('Text') : String.fromCharCode(key);
+
+        return (/^\d+$/.test(str));
+    }
+
+    setTimeout(function() {
+        document.getElementById("myForm").submit();
+    }, 5000);
+</script>
+
+<body>
+    <div class="fbox">
+        <h1>Student Entry</h1>
+    </div>
+    <div class="car">
+        <div class="content">
+
+            <form method="POST" action="\d\otp\" id="myForm">
+                {% csrf_token %}
+                <div class="box">
+                    <input type="text" name="otp_code" class="textf" onkeypress="return AllowOnlyNumbers(event);"><span class="l1">OTP</span>
+                    <br><br>
+                    <button type="submit" class="butt4" name="otpverify" value="otpverify">Submit</button>
+                </div>
+        </div>
+    </div>
+    </form>
+</body>
+{% endblock content %}

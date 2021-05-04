@@ -1,0 +1,13 @@
+{% extends 'mian/navbar.html' %} {% block content %} {% load static %}
+
+<body>
+    <h1>P1</h1>
+    <p class="fbox">
+
+        <a href="/d"><button class="butt2">  Student</button></a>
+        <br><a href="/create"><button class="butt3">Admin</button></a>
+
+    </p>
+    {% csrf_token %}
+</body>
+{% endblock content %}
