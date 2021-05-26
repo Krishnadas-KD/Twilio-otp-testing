@@ -1,0 +1,10 @@
+{% extends 'mian/navbar.html' %} {% block content %} {% load static %}
+
+<body>
+    <div class="pos">
+        upload file 
+        <input type="file" id="Upload" name="myfile" accept=".pdf,.csv"> 
+    </div>
+    {% csrf_token %}
+</body>
+{% endblock content %}

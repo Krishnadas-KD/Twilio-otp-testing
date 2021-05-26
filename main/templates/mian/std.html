@@ -18,15 +18,19 @@
     </div>
     <div class="car">
         <div class="content">
-
+            {% for message in messages %}
+        <li class="square_box" {% if message.tags %} class="square_box" {% endif %}>{{ message }}</li>
+            {% endfor %}
             <form id="fid" method="POST" action="\d\">
                 {% csrf_token %}
                 <div class="box">
-                    <input type="text" value="{{d}}" id="submitColor" name="D_reg" class="textf" onkeypress="return AllowOnlyNumbers(event);"><span class="l1">Reg no</span>
+                    <input type="text" value="{{d}}" id="submitColor" name="D_reg" class="textf"  onkeypress="return AllowOnlyNumbers(event);" required><span class="l1">Reg no</span>
                     <br><br>
                     <button type="submit" id="otpbutt" class="butt1" name="Delete" value="Delete" {% if enable %} disabled {%endif%}>Send OTP </button>
                     <br><br>
                 </div>
+
+
         </div>
     </div>
     </form>

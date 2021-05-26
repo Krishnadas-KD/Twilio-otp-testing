@@ -70,17 +70,9 @@ body {
 }
 
 .l1 {
-    /* position: relative;
-    left: -135px;
-    top: 8px;
-    transform: translateY(-50%);
-    transition: 0.5s;
-    font-size: 20px;
-    pointer-events: none;
-    color: rgb(119, 110, 110);*/
     position: relative;
-    top: -34px;
-    left: -147px;
+    top: 1px;
+    left: -135px;
     transform: translateY(-50%);
     transition: 0.5s;
     font-size: 18px;
@@ -88,15 +80,11 @@ body {
     color: rgb(0, 145, 255);
 }
 
-
-/*.textf:link.l1 {
-    top: -27px;
-    left: -150px;
-    border: 5px;
-    font-size: 18px;
-    color: rgb(0, 145, 255);
-    padding: 5px;
-}*/
+.textf:focus~.l1,
+.textf:valid~.l1 {
+    top: -34px;
+    left: -147px;
+}
 
 .butt1 {
     position: relative;
@@ -136,7 +124,7 @@ body {
 
 .butt2:hover {
     filter: saturate(.7);
-    transition: .2s;
+    transform: translateY(-5px);
 }
 
 .butt2:focus {
@@ -147,17 +135,16 @@ body {
 .butt3 {
     outline: none;
     border: none;
-    margin-left: -50px;
     width: 150px;
     height: 40px;
     border-radius: 15px;
     background: linear-gradient(180deg, #cf37edcd, #f527ee);
-    transition: .5s;
+    transition: .3s;
 }
 
 .butt3:hover {
     filter: saturate(.7);
-    transition: .2s;
+    transform: translateY(5px);
 }
 
 .butt3:focus {
@@ -210,4 +197,41 @@ body {
 
 .butt4:focus {
     filter: saturate(.3);
+}
+
+.square_box {
+    position: fixed;
+    color: red;
+    margin-top: 30px;
+    border: 1px solid rgb(247, 36, 36);
+    background-color: rgb(151, 132, 67);
+    text-align: center;
+    left: 20px;
+    width: 240px;
+    height: 20px;
+    animation: hider 3s forwards;
+}
+
+@keyframes hider {
+    0% {
+        opacity: 1;
+    }
+    70% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.couner {
+    position: absolute;
+    margin-top: 35px;
+    size: 20px;
+    color: #24d624;
+}
+
+.pos {
+    position: absolute;
+    margin-top: 50px;
 }

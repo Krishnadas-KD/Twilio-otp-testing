@@ -6,4 +6,5 @@ urlpatterns = [
     path('',home),
     path('d/',SMSsender),
     path('d/otp/',otpverify),
+    path('ad/adder/',Upload),
 ]

@@ -18,6 +18,7 @@ from threading import Timer
 import schedule
 from time import sleep
 import time
+from django.contrib import messages 
 
 # Create your views here.
 def index(respone,i):
@@ -50,8 +51,10 @@ def SMSsender(response):
                 mo=0
                 Dtxt=response.POST.get("D_reg")
                 if Dtxt=='':
+                    messages.info(response, 'Empty entry')
                     return render(response, "mian/std.html", {})
                 global d
+                print('====')
                 if Details.objects.filter(Reg_no=Dtxt).exists():
                     d=Details.objects.get(Reg_no=Dtxt)
                     sn=d.Name
@@ -70,9 +73,11 @@ def SMSsender(response):
                     client.messages.create(from_='+14849862170',
                     to=pmo,
                     body=s)
+            
                     return render(response, "mian/otpv.html", {})
                 else:
-                    return HttpResponse("<h1>Reg no did not<h1>")
+                    messages.info(response, 'Regno not found')
+                    return render(response, "mian/std.html", {})
     return render(response, "mian/std.html", {})
 
 def otpverify(response):
@@ -81,21 +86,21 @@ def otpverify(response):
     if response.method == 'POST':
         if response.POST.get("otpverify"):
             optc=response.POST.get("otp_code")
-            if(int(optc) == n):
+            if optc == "":
+                print('=============Time out============')
+                messages.info(response, 'Empty Entry')
+                return render(response, "mian/otpv.html")
+            elif(optc == str(n)):
                 print('=============SUCESSFULLY ENTER============')
                 del n
                 return render(response, "mian/studetails.html", {"d":d})
-                del d
-            elif optc == "":
-                print('=============Time out============')
-                del n
-                return render(response, "mian/std.html", {"d":d})
-                del d
             else:
-                del d
-                del n
-                return render(response, "mian/std.html", {})
-    return  render(response, "mian/std.html", {})
+                messages.info(response, 'worng entry')
+                return render(response, "mian/otpv.html")
+    return  render(response, "mian/otpv.html", {})
+    
+def Upload(response):
+    return render(response, "mian/M_admin.html", {})
     
 
 

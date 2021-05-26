@@ -9,22 +9,60 @@
         return (/^\d+$/.test(str));
     }
 
-    setTimeout(function() {
-        document.getElementById("myForm").submit();
-    }, 5000);
+    var ctrlKeyDown = false;
+
+    $(document).ready(function() {
+        $(document).on("keydown", keydown);
+        $(document).on("keyup", keyup);
+    });
+</script>
+<script>
+    var time = 30;
+    var saved_countdown = localStorage.getItem('saved_countdown');
+    if (saved_countdown == null) {
+        var new_countdown = new Date().getTime() + (time + 2) * 1000;
+        time = new_countdown;
+        localStorage.setItem('saved_countdown', new_countdown);
+    } else {
+        time = saved_countdown;
+    }
+    var x = setInterval(() => {
+        var now = new Date().getTime();
+        var distance = time - now - 1;
+        var counter = Math.floor((distance % (1000 * 60)) / 1000);
+        document.getElementById("demo").innerHTML = counter + " s";
+        if (counter <= 10) {
+            document.getElementById("demo").style.color = "#ff0000";
+        }
+        if (counter <= 0) {
+            clearInterval(x);
+            localStorage.removeItem('saved_countdown');
+            document.getElementById("demo").innerHTML = "EXPIRED";
+            setTimeout(function() {
+                window.location.href = "/d/"
+            });
+        }
+    }, 1000);
 </script>
 
 <body>
+
     <div class="fbox">
         <h1>Student Entry</h1>
     </div>
     <div class="car">
-        <div class="content">
+        <label id="demo" class="couner"></label>
 
+        <div class="content">
+            {% for message in messages %}
+            <li class="square_box" {% if message.tags %} class="square_box" {% endif %}>sd{{ message }}</li>
+
+            {% endfor %}
             <form method="POST" action="\d\otp\" id="myForm">
                 {% csrf_token %}
                 <div class="box">
-                    <input type="text" name="otp_code" class="textf" onkeypress="return AllowOnlyNumbers(event);"><span class="l1">OTP</span>
+
+                    <input type="text" name="otp_code" class="textf" onkeypress="return AllowOnlyNumbers(event);" required><span class="l1">OTP</span>
                     <br><br>
                     <button type="submit" class="butt4" name="otpverify" value="otpverify">Submit</button>
                 </div>
